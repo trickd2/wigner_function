@@ -1,0 +1,1130 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     43793,       1122]
+NotebookOptionsPosition[     41856,       1088]
+NotebookOutlinePosition[     42256,       1104]
+CellTagsIndexPosition[     42213,       1101]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"Clear", "[", "\"\<Global\.b4*\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"87e69862-badf-124a-ac6c-07160b0587ae"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"mp", ":=", "1"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Masa", " ", "de", " ", "la", " ", "part\[IAcute]cula"}], 
+   "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"\[HBar]", ":=", "1"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"H", " ", "barra"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"np", ":=", "100", " ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "N\[UAcute]mero", " ", "de", " ", "puntos", " ", "de", " ", "malla"}], 
+   "*)"}]}]}], "Input",
+ CellLabel->"In[2]:=",ExpressionUUID->"2d1e5a15-8fc8-024d-9c54-37b5fc497a56"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"\[Omega]", ":=", "1"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Frecuencia", " ", "angular"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ag", ":=", "3"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "Par\[AAcute]metro", " ", "libre", " ", "en", " ", "la", " ", 
+    "posici\[OAcute]n", " ", "para", " ", "graficar"}], "*)"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"bg", ":=", "3"}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "Par\[AAcute]metro", " ", "libre", " ", "en", " ", "el", " ", "momento", 
+    " ", "para", " ", "graficar"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Lpi", ":=", "1"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Longitud", " ", "del", " ", "pozo", " ", "infinito"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"m", ":=", "1"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "N\[UAcute]mero", " ", "cu\[AAcute]ntico", " ", "exclusivo", " ", "para", 
+     " ", "pozo", " ", "infinito", " ", 
+     RowBox[{"m", ":", " ", "1"}]}], ",", "2", ",", "..."}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"cg", ":=", "1"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "Par\[AAcute]metro", " ", "libre", " ", "en", " ", "la", " ", 
+    "posici\[OAcute]n", " ", "para", " ", "graficar"}], "*)"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dg", ":=", "5"}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "Par\[AAcute]metro", " ", "libre", " ", "en", " ", "el", " ", "momento", 
+    " ", "para", " ", "graficar"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"rb", ":=", "1"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Radio", " ", "de", " ", "Bohr"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"gg", ":=", "0.01"}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "Par\[AAcute]metro", " ", "libre", " ", "en", " ", "la", " ", 
+    "posici\[OAcute]n", " ", "para", " ", "graficar"}], "*)"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"hg", ":=", "3"}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "Par\[AAcute]metro", " ", "libre", " ", "en", " ", "el", " ", "momento", 
+    " ", "para", " ", "graficar"}], "*)"}]}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.9687131084837646`*^9, 3.968713108808588*^9}, {
+  3.968713150391384*^9, 3.968713158056406*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"7be824b1-5a00-0b49-8a83-e0a8ad8e8774"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Verificar", " ", "y", " ", "crear", " ", "carpetas", " ", "si", " ", "no",
+     " ", "existen"}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"!", 
+       RowBox[{
+       "DirectoryQ", "[", "\"\<Graficas_Wigner/Oscilador\>\"", "]"}]}], ",", 
+      RowBox[{
+      "CreateDirectory", "[", "\"\<Graficas_Wigner/Oscilador\>\"", "]"}]}], 
+     "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"!", 
+       RowBox[{"DirectoryQ", "[", "\"\<Graficas_Wigner/Pozo\>\"", "]"}]}], 
+      ",", 
+      RowBox[{"CreateDirectory", "[", "\"\<Graficas_Wigner/Pozo\>\"", "]"}]}],
+      "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"!", 
+       RowBox[{
+       "DirectoryQ", "[", "\"\<Graficas_Wigner/Hidrogeno\>\"", "]"}]}], ",", 
+      RowBox[{
+      "CreateDirectory", "[", "\"\<Graficas_Wigner/Hidrogeno\>\"", "]"}]}], 
+     "]"}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"===", 
+     RowBox[{"==", 
+      RowBox[{"OSCILADOR", " ", "ARM\[CapitalOAcute]NICO"}]}], "===", "=="}], 
+    "*)"}], "\n", 
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"\[Xi]", "=", 
+       RowBox[{
+        RowBox[{"Sqrt", "[", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"mp", "*", "\[Omega]"}], ")"}], "/", "\[HBar]"}], "]"}], 
+        " ", "x"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"psioAC", "[", "x_", "]"}], "=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"mp", "*", "\[Omega]"}], ")"}], "/", 
+           RowBox[{"(", 
+            RowBox[{"\[Pi]", "*", "\[HBar]"}], ")"}]}], ")"}], "^", 
+         RowBox[{"(", 
+          RowBox[{"1", "/", "4"}], ")"}]}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "/", 
+          RowBox[{"Sqrt", "[", 
+           RowBox[{
+            RowBox[{"2", "^", "n"}], "*", 
+            RowBox[{"n", "!"}]}], "]"}]}], ")"}], " ", 
+        RowBox[{"HermiteH", "[", 
+         RowBox[{"n", ",", "\[Xi]"}], "]"}], " ", 
+        RowBox[{"Exp", "[", 
+         RowBox[{
+          RowBox[{"-", 
+           RowBox[{"\[Xi]", "^", "2"}]}], "/", "2"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"WignerOAC", "[", 
+        RowBox[{"x_", ",", "p_"}], "]"}], "=", 
+       RowBox[{"Re", "[", 
+        RowBox[{
+         RowBox[{"1", "/", "Pi"}], "*", 
+         RowBox[{"Integrate", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"psioAC", "[", 
+             RowBox[{"x", "+", 
+              RowBox[{"q", "/", "2"}]}], "]"}], "*", 
+            RowBox[{"psioAC", "[", 
+             RowBox[{"x", "-", 
+              RowBox[{"q", "/", "2"}]}], "]"}], " ", 
+            RowBox[{"Exp", "[", 
+             RowBox[{"I", "*", 
+              RowBox[{"(", 
+               RowBox[{"p", "*", "q"}], ")"}]}], "]"}]}], ",", 
+           RowBox[{"{", 
+            RowBox[{"q", ",", 
+             RowBox[{"-", "Infinity"}], ",", "Infinity"}], "}"}]}], "]"}]}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"evalA1", "=", 
+       RowBox[{"DensityPlot", "[", 
+        RowBox[{
+         RowBox[{"WignerOAC", "[", 
+          RowBox[{"x", ",", "p"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", 
+           RowBox[{"-", "ag"}], ",", "ag"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"p", ",", 
+           RowBox[{"-", "bg"}], ",", "bg"}], "}"}], ",", 
+         RowBox[{"ColorFunction", "->", "\"\<SunsetColors\>\""}], ",", 
+         RowBox[{"PlotLegends", "->", "Automatic"}], ",", 
+         RowBox[{"Axes", "->", "True"}], ",", 
+         RowBox[{"AxesLabel", "->", 
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<Posici\[OAcute]n (x)\>\"", ",", "\"\<Momento (p)\>\""}], 
+           "}"}]}], ",", 
+         RowBox[{"PlotPoints", "->", "np"}], ",", 
+         RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}], ",", 
+         RowBox[{"PlotRange", "->", "All"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"evalA2", "=", 
+       RowBox[{"ContourPlot", "[", 
+        RowBox[{
+         RowBox[{"WignerOAC", "[", 
+          RowBox[{"x", ",", "p"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", 
+           RowBox[{"-", "ag"}], ",", "ag"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"p", ",", 
+           RowBox[{"-", "bg"}], ",", "bg"}], "}"}], ",", 
+         RowBox[{"FrameLabel", "->", 
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<Posici\[OAcute]n (x)\>\"", ",", "\"\<Momento (p)\>\""}], 
+           "}"}]}], ",", 
+         RowBox[{"PlotPoints", "->", "np"}], ",", 
+         RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}], ",", 
+         RowBox[{"PlotRange", "->", "All"}], ",", 
+         RowBox[{"Frame", "->", "True"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"evalA3", "=", 
+       RowBox[{"Plot3D", "[", 
+        RowBox[{
+         RowBox[{"WignerOAC", "[", 
+          RowBox[{"x", ",", "p"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", 
+           RowBox[{"-", "ag"}], ",", "ag"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"p", ",", 
+           RowBox[{"-", "bg"}], ",", "bg"}], "}"}], ",", 
+         RowBox[{"ColorFunction", "->", "\"\<SunsetColors\>\""}], ",", 
+         RowBox[{"PlotLegends", "->", "Automatic"}], ",", 
+         RowBox[{"Axes", "->", "True"}], ",", 
+         RowBox[{"AxesLabel", "->", 
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<Posici\[OAcute]n (x)\>\"", ",", "\"\<Momento (p)\>\"", ",", 
+            "\"\<W(x,p)\>\""}], "}"}]}], ",", 
+         RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}], ",", 
+         RowBox[{"PlotPoints", "->", "np"}], ",", 
+         RowBox[{"BoxRatios", "->", 
+          RowBox[{"{", 
+           RowBox[{"5", ",", "5", ",", "5"}], "}"}]}], ",", 
+         RowBox[{"PlotRange", "->", "All"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Export", "[", 
+       RowBox[{
+        RowBox[{"\"\<Graficas_Wigner/Oscilador/A1n\>\"", "<>", 
+         RowBox[{"ToString", "[", "n", "]"}], "<>", "\"\<.png\>\""}], ",", 
+        "evalA1", ",", 
+        RowBox[{"ImageSize", "->", 
+         RowBox[{"{", 
+          RowBox[{"800", ",", "600"}], "}"}]}], ",", 
+        RowBox[{"ImageResolution", "->", "300"}], ",", 
+        RowBox[{"\"\<OverwriteTarget\>\"", "->", "True"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Export", "[", 
+       RowBox[{
+        RowBox[{"\"\<Graficas_Wigner/Oscilador/A2n\>\"", "<>", 
+         RowBox[{"ToString", "[", "n", "]"}], "<>", "\"\<.png\>\""}], ",", 
+        "evalA2", ",", 
+        RowBox[{"ImageSize", "->", 
+         RowBox[{"{", 
+          RowBox[{"800", ",", "600"}], "}"}]}], ",", 
+        RowBox[{"ImageResolution", "->", "300"}], ",", 
+        RowBox[{"\"\<OverwriteTarget\>\"", "->", "True"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Export", "[", 
+       RowBox[{
+        RowBox[{"\"\<Graficas_Wigner/Oscilador/A3n\>\"", "<>", 
+         RowBox[{"ToString", "[", "n", "]"}], "<>", "\"\<.png\>\""}], ",", 
+        "evalA3", ",", 
+        RowBox[{"ImageSize", "->", 
+         RowBox[{"{", 
+          RowBox[{"800", ",", "600"}], "}"}]}], ",", 
+        RowBox[{"ImageResolution", "->", "300"}], ",", 
+        RowBox[{"\"\<OverwriteTarget\>\"", "->", "True"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", 
+       RowBox[{"\"\<Exportado Oscilador n=\>\"", "<>", 
+        RowBox[{"ToString", "[", "n", "]"}]}], "]"}], ";"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "0", ",", "2"}], "}"}]}], "]"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"===", 
+     RowBox[{"==", 
+      RowBox[{"POZO", " ", "INFINITO"}]}], "===", "=="}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"psiPI", "[", "x_", "]"}], "=", 
+       RowBox[{
+        RowBox[{"Sqrt", "[", 
+         RowBox[{"2", "/", "Lpi"}], "]"}], "*", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"n", "*", "Pi", "*", 
+          RowBox[{"x", "/", "Lpi"}]}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"WignerPI", "[", 
+        RowBox[{"x_", ",", "p_"}], "]"}], "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"I", "*", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Exp", "[", 
+             RowBox[{"I", "*", "Lpi", "*", "p"}], "]"}], "-", 
+            RowBox[{"Exp", "[", 
+             RowBox[{
+              RowBox[{"-", "I"}], "*", "Lpi", "*", "p"}], "]"}]}], ")"}], "*", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Lpi", "^", "2"}], "*", 
+             RowBox[{"p", "^", "2"}], "*", 
+             RowBox[{"Cos", "[", 
+              RowBox[{"n", "*", "Pi"}], "]"}]}], "-", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Lpi", "^", "2"}], "*", 
+                RowBox[{"p", "^", "2"}]}], "-", 
+               RowBox[{
+                RowBox[{"n", "^", "2"}], "*", 
+                RowBox[{"Pi", "^", "2"}]}]}], ")"}], "*", 
+             RowBox[{"Cos", "[", 
+              RowBox[{"2", "*", "n", "*", "Pi", "*", 
+               RowBox[{"x", "/", "Lpi"}]}], "]"}]}]}], ")"}]}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"2", "*", "Pi", "*", "Lpi", "*", "p", "*", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"n", "^", "2"}], "*", 
+             RowBox[{"Pi", "^", "2"}]}], "-", 
+            RowBox[{
+             RowBox[{"Lpi", "^", "2"}], "*", 
+             RowBox[{"p", "^", "2"}]}]}], ")"}]}], ")"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"evalB1", "=", 
+       RowBox[{"DensityPlot", "[", 
+        RowBox[{
+         RowBox[{"WignerPI", "[", 
+          RowBox[{"x", ",", "p"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "0", ",", "Lpi"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"p", ",", 
+           RowBox[{"-", "dg"}], ",", "dg"}], "}"}], ",", 
+         RowBox[{"ColorFunction", "->", "\"\<SunsetColors\>\""}], ",", 
+         RowBox[{"PlotLegends", "->", "Automatic"}], ",", 
+         RowBox[{"Axes", "->", "True"}], ",", 
+         RowBox[{"AxesLabel", "->", 
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<Posici\[OAcute]n (x)\>\"", ",", "\"\<Momento (p)\>\""}], 
+           "}"}]}], ",", 
+         RowBox[{"PlotPoints", "->", "np"}], ",", 
+         RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}], ",", 
+         RowBox[{"PlotRange", "->", "All"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"evalB2", "=", 
+       RowBox[{"ContourPlot", "[", 
+        RowBox[{
+         RowBox[{"WignerPI", "[", 
+          RowBox[{"x", ",", "p"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "0", ",", "Lpi"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"p", ",", 
+           RowBox[{"-", "dg"}], ",", "dg"}], "}"}], ",", 
+         RowBox[{"FrameLabel", "->", 
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<Posici\[OAcute]n (x)\>\"", ",", "\"\<Momento (p)\>\""}], 
+           "}"}]}], ",", 
+         RowBox[{"PlotPoints", "->", "np"}], ",", 
+         RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}], ",", 
+         RowBox[{"PlotRange", "->", "All"}], ",", 
+         RowBox[{"Frame", "->", "True"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"evalB3", "=", 
+       RowBox[{"Plot3D", "[", 
+        RowBox[{
+         RowBox[{"WignerPI", "[", 
+          RowBox[{"x", ",", "p"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "0", ",", "Lpi"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"p", ",", 
+           RowBox[{"-", "dg"}], ",", "dg"}], "}"}], ",", 
+         RowBox[{"ColorFunction", "->", "\"\<SunsetColors\>\""}], ",", 
+         RowBox[{"PlotLegends", "->", "Automatic"}], ",", 
+         RowBox[{"Axes", "->", "True"}], ",", 
+         RowBox[{"AxesLabel", "->", 
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<Posici\[OAcute]n (x)\>\"", ",", "\"\<Momento (p)\>\"", ",", 
+            "\"\<W(x,p)\>\""}], "}"}]}], ",", 
+         RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}], ",", 
+         RowBox[{"PlotPoints", "->", "np"}], ",", 
+         RowBox[{"BoxRatios", "->", 
+          RowBox[{"{", 
+           RowBox[{"5", ",", "5", ",", "5"}], "}"}]}], ",", 
+         RowBox[{"PlotRange", "->", "All"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Export", "[", 
+       RowBox[{
+        RowBox[{"\"\<Graficas_Wigner/Pozo/B1n\>\"", "<>", 
+         RowBox[{"ToString", "[", "n", "]"}], "<>", "\"\<.png\>\""}], ",", 
+        "evalB1", ",", 
+        RowBox[{"ImageSize", "->", 
+         RowBox[{"{", 
+          RowBox[{"800", ",", "600"}], "}"}]}], ",", 
+        RowBox[{"ImageResolution", "->", "300"}], ",", 
+        RowBox[{"\"\<OverwriteTarget\>\"", "->", "True"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Export", "[", 
+       RowBox[{
+        RowBox[{"\"\<Graficas_Wigner/Pozo/B2n\>\"", "<>", 
+         RowBox[{"ToString", "[", "n", "]"}], "<>", "\"\<.png\>\""}], ",", 
+        "evalB2", ",", 
+        RowBox[{"ImageSize", "->", 
+         RowBox[{"{", 
+          RowBox[{"800", ",", "600"}], "}"}]}], ",", 
+        RowBox[{"ImageResolution", "->", "300"}], ",", 
+        RowBox[{"\"\<OverwriteTarget\>\"", "->", "True"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Export", "[", 
+       RowBox[{
+        RowBox[{"\"\<Graficas_Wigner/Pozo/B3n\>\"", "<>", 
+         RowBox[{"ToString", "[", "n", "]"}], "<>", "\"\<.png\>\""}], ",", 
+        "evalB3", ",", 
+        RowBox[{"ImageSize", "->", 
+         RowBox[{"{", 
+          RowBox[{"800", ",", "600"}], "}"}]}], ",", 
+        RowBox[{"ImageResolution", "->", "300"}], ",", 
+        RowBox[{"\"\<OverwriteTarget\>\"", "->", "True"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", 
+       RowBox[{"\"\<Exportado Pozo n=\>\"", "<>", 
+        RowBox[{"ToString", "[", "n", "]"}]}], "]"}], ";"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "1", ",", "3"}], "}"}]}], "]"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"===", 
+     RowBox[{"==", "HIDR\[CapitalOAcute]GENO"}], "===", "=="}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"psiR", "[", "r_", "]"}], "=", 
+     RowBox[{
+      RowBox[{"Exp", "[", 
+       RowBox[{
+        RowBox[{"-", "r"}], "/", "rb"}], "]"}], "/", 
+      RowBox[{"Sqrt", "[", 
+       RowBox[{"Pi", "*", 
+        RowBox[{"rb", "^", "3"}]}], "]"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"WignerR", "[", 
+      RowBox[{"r_", ",", "p_"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"1", "/", "Pi"}], "*", 
+      RowBox[{"Integrate", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"psiR", "[", 
+          RowBox[{"r", "+", 
+           RowBox[{"q", "/", "2"}]}], "]"}], "*", 
+         RowBox[{"psiR", "[", 
+          RowBox[{"r", "-", 
+           RowBox[{"q", "/", "2"}]}], "]"}], "*", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"I", "*", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"p", "*", "q"}], ")"}], "/", "\[HBar]"}]}], "]"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"q", ",", 
+          RowBox[{
+           RowBox[{"-", "2"}], "*", "r"}], ",", 
+          RowBox[{"2", "*", "r"}]}], "}"}], ",", 
+        RowBox[{"Assumptions", "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"r", ">", "0"}], ",", 
+           RowBox[{"p", "\[Element]", "Reals"}]}], "}"}]}]}], "]"}]}]}], 
+    ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{"evalC1", "=", 
+     RowBox[{"DensityPlot", "[", 
+      RowBox[{
+       RowBox[{"WignerR", "[", 
+        RowBox[{"r", ",", "p"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"r", ",", "0", ",", 
+         RowBox[{"5", "*", "rb"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"p", ",", 
+         RowBox[{"-", "hg"}], ",", "hg"}], "}"}], ",", 
+       RowBox[{"ColorFunction", "->", "\"\<SunsetColors\>\""}], ",", 
+       RowBox[{"PlotLegends", "->", "Automatic"}], ",", 
+       RowBox[{"Axes", "->", "True"}], ",", 
+       RowBox[{"AxesLabel", "->", 
+        RowBox[{"{", 
+         RowBox[{"\"\<Posici\[OAcute]n (r)\>\"", ",", "\"\<Momento (p)\>\""}],
+          "}"}]}], ",", 
+       RowBox[{"PlotPoints", "->", "np"}], ",", 
+       RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}], ",", 
+       RowBox[{"PlotRange", "->", "All"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{"evalC2", "=", 
+     RowBox[{"ContourPlot", "[", 
+      RowBox[{
+       RowBox[{"WignerR", "[", 
+        RowBox[{"r", ",", "p"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"r", ",", "0", ",", 
+         RowBox[{"5", "*", "rb"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"p", ",", 
+         RowBox[{"-", "hg"}], ",", "hg"}], "}"}], ",", 
+       RowBox[{"FrameLabel", "->", 
+        RowBox[{"{", 
+         RowBox[{"\"\<Posici\[OAcute]n (r)\>\"", ",", "\"\<Momento (p)\>\""}],
+          "}"}]}], ",", 
+       RowBox[{"PlotPoints", "->", "np"}], ",", 
+       RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}], ",", 
+       RowBox[{"PlotRange", "->", "All"}], ",", 
+       RowBox[{"Frame", "->", "True"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{"evalC3", "=", 
+     RowBox[{"Plot3D", "[", 
+      RowBox[{
+       RowBox[{"WignerR", "[", 
+        RowBox[{"r", ",", "p"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"r", ",", "0", ",", 
+         RowBox[{"5", "*", "rb"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"p", ",", 
+         RowBox[{"-", "hg"}], ",", "hg"}], "}"}], ",", 
+       RowBox[{"ColorFunction", "->", "\"\<SunsetColors\>\""}], ",", 
+       RowBox[{"PlotLegends", "->", "Automatic"}], ",", 
+       RowBox[{"Axes", "->", "True"}], ",", 
+       RowBox[{"AxesLabel", "->", 
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<Posici\[OAcute]n (r)\>\"", ",", "\"\<Momento (p)\>\"", ",", 
+          "\"\<W(r,p)\>\""}], "}"}]}], ",", 
+       RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}], ",", 
+       RowBox[{"PlotPoints", "->", "np"}], ",", 
+       RowBox[{"BoxRatios", "->", 
+        RowBox[{"{", 
+         RowBox[{"5", ",", "5", ",", "5"}], "}"}]}], ",", 
+       RowBox[{"PlotRange", "->", "All"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{"Export", "[", 
+     RowBox[{"\"\<Graficas_Wigner/Hidrogeno/C1n1.png\>\"", ",", "evalC1", ",", 
+      RowBox[{"ImageSize", "->", 
+       RowBox[{"{", 
+        RowBox[{"800", ",", "600"}], "}"}]}], ",", 
+      RowBox[{"ImageResolution", "->", "300"}], ",", 
+      RowBox[{"\"\<OverwriteTarget\>\"", "->", "True"}]}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Export", "[", 
+     RowBox[{"\"\<Graficas_Wigner/Hidrogeno/C2n1.png\>\"", ",", "evalC2", ",", 
+      RowBox[{"ImageSize", "->", 
+       RowBox[{"{", 
+        RowBox[{"800", ",", "600"}], "}"}]}], ",", 
+      RowBox[{"ImageResolution", "->", "300"}], ",", 
+      RowBox[{"\"\<OverwriteTarget\>\"", "->", "True"}]}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Export", "[", 
+     RowBox[{"\"\<Graficas_Wigner/Hidrogeno/C3n1.png\>\"", ",", "evalC3", ",", 
+      RowBox[{"ImageSize", "->", 
+       RowBox[{"{", 
+        RowBox[{"800", ",", "600"}], "}"}]}], ",", 
+      RowBox[{"ImageResolution", "->", "300"}], ",", 
+      RowBox[{"\"\<OverwriteTarget\>\"", "->", "True"}]}], "]"}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<Exportado Hidr\[OAcute]geno 1s\>\"", "]"}], 
+    ";"}], "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"===", 
+     RowBox[{"==", 
+      RowBox[{"HIDR\[CapitalOAcute]GENO", "-", 
+       RowBox[{"ESTADO", " ", "2", "s", " ", 
+        RowBox[{"(", "psi200", ")"}]}]}]}], "===", "=="}], "*)"}], 
+   RowBox[{
+    RowBox[{
+     RowBox[{"psi200", "[", "r_", "]"}], "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "/", 
+        RowBox[{"(", 
+         RowBox[{"4", "*", 
+          RowBox[{"Sqrt", "[", 
+           RowBox[{"2", "*", "Pi"}], "]"}], "*", 
+          RowBox[{"rb", "^", 
+           RowBox[{"(", 
+            RowBox[{"3", "/", "2"}], ")"}]}]}], ")"}]}], ")"}], "*", 
+      RowBox[{"(", 
+       RowBox[{"2", "-", 
+        RowBox[{"r", "/", "rb"}]}], ")"}], "*", 
+      RowBox[{"Exp", "[", 
+       RowBox[{
+        RowBox[{"-", "r"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"2", "*", "rb"}], ")"}]}], "]"}]}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"WignerR200", "[", 
+      RowBox[{"r_", ",", "p_"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"1", "/", "Pi"}], "*", 
+      RowBox[{"Integrate", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"psi200", "[", 
+          RowBox[{"r", "+", 
+           RowBox[{"q", "/", "2"}]}], "]"}], "*", 
+         RowBox[{"psi200", "[", 
+          RowBox[{"r", "-", 
+           RowBox[{"q", "/", "2"}]}], "]"}], "*", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"I", "*", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"p", "*", "q"}], ")"}], "/", "\[HBar]"}]}], "]"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"q", ",", 
+          RowBox[{
+           RowBox[{"-", "2"}], "*", "r"}], ",", 
+          RowBox[{"2", "*", "r"}]}], "}"}], ",", 
+        RowBox[{"Assumptions", "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"r", ">", "0"}], ",", 
+           RowBox[{"p", "\[Element]", "Reals"}]}], "}"}]}]}], "]"}]}]}], 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Exportar", " ", "estado", " ", "2", "s"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"Export", "[", 
+     RowBox[{"\"\<Graficas_Wigner/Hidrogeno/C1n2.png\>\"", ",", 
+      RowBox[{"DensityPlot", "[", 
+       RowBox[{
+        RowBox[{"WignerR200", "[", 
+         RowBox[{"r", ",", "p"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", "0", ",", 
+          RowBox[{"10", "*", "rb"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"p", ",", 
+          RowBox[{"-", "hg"}], ",", "hg"}], "}"}], ",", 
+        RowBox[{"ColorFunction", "->", "\"\<SunsetColors\>\""}], ",", 
+        RowBox[{"PlotLegends", "->", "Automatic"}], ",", 
+        RowBox[{"Axes", "->", "True"}], ",", 
+        RowBox[{"AxesLabel", "->", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<Posici\[OAcute]n (r)\>\"", ",", "\"\<Momento (p)\>\""}], 
+          "}"}]}], ",", 
+        RowBox[{"PlotPoints", "->", "np"}], ",", 
+        RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}], ",", 
+        RowBox[{"PlotRange", "->", "All"}]}], "]"}], ",", 
+      RowBox[{"ImageSize", "->", 
+       RowBox[{"{", 
+        RowBox[{"800", ",", "600"}], "}"}]}], ",", 
+      RowBox[{"ImageResolution", "->", "300"}], ",", 
+      RowBox[{"\"\<OverwriteTarget\>\"", "->", "True"}]}], "]"}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{"Export", "[", 
+     RowBox[{"\"\<Graficas_Wigner/Hidrogeno/C2n2.png\>\"", ",", 
+      RowBox[{"ContourPlot", "[", 
+       RowBox[{
+        RowBox[{"WignerR200", "[", 
+         RowBox[{"r", ",", "p"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", "0", ",", 
+          RowBox[{"10", "*", "rb"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"p", ",", 
+          RowBox[{"-", "hg"}], ",", "hg"}], "}"}], ",", 
+        RowBox[{"FrameLabel", "->", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<Posici\[OAcute]n (r)\>\"", ",", "\"\<Momento (p)\>\""}], 
+          "}"}]}], ",", 
+        RowBox[{"PlotPoints", "->", "np"}], ",", 
+        RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}], ",", 
+        RowBox[{"PlotRange", "->", "All"}], ",", 
+        RowBox[{"Frame", "->", "True"}]}], "]"}], ",", 
+      RowBox[{"ImageSize", "->", 
+       RowBox[{"{", 
+        RowBox[{"800", ",", "600"}], "}"}]}], ",", 
+      RowBox[{"ImageResolution", "->", "300"}], ",", 
+      RowBox[{"\"\<OverwriteTarget\>\"", "->", "True"}]}], "]"}], ";"}], "\n",
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Export", "[", 
+     RowBox[{"\"\<Graficas_Wigner/Hidrogeno/C3n2.png\>\"", ",", 
+      RowBox[{"Plot3D", "[", 
+       RowBox[{
+        RowBox[{"WignerR200", "[", 
+         RowBox[{"r", ",", "p"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", "0", ",", 
+          RowBox[{"10", "*", "rb"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"p", ",", 
+          RowBox[{"-", "hg"}], ",", "hg"}], "}"}], ",", 
+        RowBox[{"ColorFunction", "->", "\"\<SunsetColors\>\""}], ",", 
+        RowBox[{"PlotLegends", "->", "Automatic"}], ",", 
+        RowBox[{"Axes", "->", "True"}], ",", 
+        RowBox[{"AxesLabel", "->", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<Posici\[OAcute]n (r)\>\"", ",", "\"\<Momento (p)\>\"", ",", 
+           "\"\<W(r,p)\>\""}], "}"}]}], ",", 
+        RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}], ",", 
+        RowBox[{"PlotPoints", "->", "np"}], ",", 
+        RowBox[{"BoxRatios", "->", 
+         RowBox[{"{", 
+          RowBox[{"5", ",", "5", ",", "5"}], "}"}]}], ",", 
+        RowBox[{"PlotRange", "->", "All"}]}], "]"}], ",", 
+      RowBox[{"ImageSize", "->", 
+       RowBox[{"{", 
+        RowBox[{"800", ",", "600"}], "}"}]}], ",", 
+      RowBox[{"ImageResolution", "->", "300"}], ",", 
+      RowBox[{"\"\<OverwriteTarget\>\"", "->", "True"}]}], "]"}], ";"}], "\n",
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+    "Print", "[", "\"\<Exportado Hidr\[OAcute]geno 2s (psi200)\>\"", "]"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"===", 
+     RowBox[{"==", 
+      RowBox[{"HIDR\[CapitalOAcute]GENO", "-", 
+       RowBox[{"ESTADO", " ", "3", "s", " ", 
+        RowBox[{"(", "psi300", ")"}]}]}]}], "===", "=="}], "*)"}], 
+   RowBox[{
+    RowBox[{
+     RowBox[{"psi300", "[", "r_", "]"}], "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"2", "/", 
+        RowBox[{"(", 
+         RowBox[{"81", "*", 
+          RowBox[{"Sqrt", "[", 
+           RowBox[{"3", "*", "Pi"}], "]"}], "*", 
+          RowBox[{"rb", "^", 
+           RowBox[{"(", 
+            RowBox[{"3", "/", "2"}], ")"}]}]}], ")"}]}], ")"}], "*", 
+      RowBox[{"(", 
+       RowBox[{"27", "-", 
+        RowBox[{"18", "*", 
+         RowBox[{"(", 
+          RowBox[{"r", "/", "rb"}], ")"}]}], "+", 
+        RowBox[{"2", "*", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"r", "/", "rb"}], ")"}], "^", "2"}]}]}], ")"}], "*", 
+      RowBox[{"Exp", "[", 
+       RowBox[{
+        RowBox[{"-", "r"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"3", "*", "rb"}], ")"}]}], "]"}]}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"WignerR300", "[", 
+      RowBox[{"r_", ",", "p_"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"1", "/", "Pi"}], "*", 
+      RowBox[{"Integrate", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"psi300", "[", 
+          RowBox[{"r", "+", 
+           RowBox[{"q", "/", "2"}]}], "]"}], "*", 
+         RowBox[{"psi300", "[", 
+          RowBox[{"r", "-", 
+           RowBox[{"q", "/", "2"}]}], "]"}], "*", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"I", "*", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"p", "*", "q"}], ")"}], "/", "\[HBar]"}]}], "]"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"q", ",", 
+          RowBox[{
+           RowBox[{"-", "2"}], "*", "r"}], ",", 
+          RowBox[{"2", "*", "r"}]}], "}"}], ",", 
+        RowBox[{"Assumptions", "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"r", ">", "0"}], ",", 
+           RowBox[{"p", "\[Element]", "Reals"}]}], "}"}]}]}], "]"}]}]}], 
+    ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Gr\[AAcute]fica", " ", "3", "D", " ", "del", " ", "estado", " ", "3", 
+     "s", " ", "con", " ", "rango", " ", "forzado"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"grafica3s", "=", 
+     RowBox[{"Plot3D", "[", 
+      RowBox[{
+       RowBox[{"WignerR300", "[", 
+        RowBox[{"r", ",", "p"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"r", ",", "0", ",", 
+         RowBox[{"15", "*", "rb"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"p", ",", 
+         RowBox[{"-", "hg"}], ",", "hg"}], "}"}], ",", 
+       RowBox[{"ColorFunction", "->", "\"\<SunsetColors\>\""}], ",", 
+       RowBox[{"PlotLegends", "->", "Automatic"}], ",", 
+       RowBox[{"Axes", "->", "True"}], ",", 
+       RowBox[{"AxesLabel", "->", 
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<Posici\[OAcute]n (r)\>\"", ",", "\"\<Momento (p)\>\"", ",", 
+          "\"\<W(r,p)\>\""}], "}"}]}], ",", 
+       RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}], ",", 
+       RowBox[{"PlotPoints", "->", "np"}], ",", 
+       RowBox[{"BoxRatios", "->", 
+        RowBox[{"{", 
+         RowBox[{"5", ",", "5", ",", "5"}], "}"}]}], ",", 
+       RowBox[{"PlotRange", "->", 
+        RowBox[{"{", 
+         RowBox[{"All", ",", "All", ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "0.005"}], ",", "0.010"}], "}"}]}], "}"}]}]}], 
+      "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Exportar", " ", "estado", " ", "3", "s"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Export", "[", 
+     RowBox[{"\"\<Graficas_Wigner/Hidrogeno/C1n3.png\>\"", ",", 
+      RowBox[{"DensityPlot", "[", 
+       RowBox[{
+        RowBox[{"WignerR300", "[", 
+         RowBox[{"r", ",", "p"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", "0", ",", 
+          RowBox[{"15", "*", "rb"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"p", ",", 
+          RowBox[{"-", "hg"}], ",", "hg"}], "}"}], ",", 
+        RowBox[{"ColorFunction", "->", "\"\<SunsetColors\>\""}], ",", 
+        RowBox[{"PlotLegends", "->", "Automatic"}], ",", 
+        RowBox[{"Axes", "->", "True"}], ",", 
+        RowBox[{"AxesLabel", "->", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<Posici\[OAcute]n (r)\>\"", ",", "\"\<Momento (p)\>\""}], 
+          "}"}]}], ",", 
+        RowBox[{"PlotPoints", "->", "np"}], ",", 
+        RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}], ",", 
+        RowBox[{"PlotRange", "->", "All"}]}], "]"}], ",", 
+      RowBox[{"ImageSize", "->", 
+       RowBox[{"{", 
+        RowBox[{"800", ",", "600"}], "}"}]}], ",", 
+      RowBox[{"ImageResolution", "->", "300"}], ",", 
+      RowBox[{"\"\<OverwriteTarget\>\"", "->", "True"}]}], "]"}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{"Export", "[", 
+     RowBox[{"\"\<Graficas_Wigner/Hidrogeno/C2n3.png\>\"", ",", 
+      RowBox[{"ContourPlot", "[", 
+       RowBox[{
+        RowBox[{"WignerR300", "[", 
+         RowBox[{"r", ",", "p"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", "0", ",", 
+          RowBox[{"15", "*", "rb"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"p", ",", 
+          RowBox[{"-", "hg"}], ",", "hg"}], "}"}], ",", 
+        RowBox[{"FrameLabel", "->", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<Posici\[OAcute]n (r)\>\"", ",", "\"\<Momento (p)\>\""}], 
+          "}"}]}], ",", 
+        RowBox[{"PlotPoints", "->", "np"}], ",", 
+        RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}], ",", 
+        RowBox[{"PlotRange", "->", "All"}], ",", 
+        RowBox[{"Frame", "->", "True"}]}], "]"}], ",", 
+      RowBox[{"ImageSize", "->", 
+       RowBox[{"{", 
+        RowBox[{"800", ",", "600"}], "}"}]}], ",", 
+      RowBox[{"ImageResolution", "->", "300"}], ",", 
+      RowBox[{"\"\<OverwriteTarget\>\"", "->", "True"}]}], "]"}], ";"}], "\n",
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Export", "[", 
+     RowBox[{
+     "\"\<Graficas_Wigner/Hidrogeno/C3n3.png\>\"", ",", "grafica3s", ",", 
+      RowBox[{"ImageSize", "->", 
+       RowBox[{"{", 
+        RowBox[{"800", ",", "600"}], "}"}]}], ",", 
+      RowBox[{"ImageResolution", "->", "300"}], ",", 
+      RowBox[{"\"\<OverwriteTarget\>\"", "->", "True"}]}], "]"}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{
+    "Print", "[", "\"\<Exportado Hidr\[OAcute]geno 3s (psi300)\>\"", "]"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+    "Print", "[", 
+     "\"\<TODAS las im\[AAcute]genes exportadas/actualizadas en sus \
+carpetas\>\"", "]"}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.9687132544694157`*^9, 3.9687132544694157`*^9}, {
+   3.968718305783388*^9, 3.9687183350751343`*^9}, {3.968718462698929*^9, 
+   3.968718473857258*^9}, 3.968718840623543*^9, 3.968718989469551*^9, {
+   3.9687194324805737`*^9, 3.968719432970604*^9}, {3.9687199407514477`*^9, 
+   3.9687199559112377`*^9}, 3.968722436144079*^9, {3.969041419274946*^9, 
+   3.969041498770134*^9}, {3.9690416957519226`*^9, 
+   3.9690416998169785`*^9}},ExpressionUUID->"05fae8f8-7bc5-0e42-b842-\
+57b74867605b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"Exportado Oscilador n=0\"\>"], "Print",
+ CellChangeTimes->{3.9687133153601913`*^9, 3.9687184891331253`*^9, 
+  3.9687190035750275`*^9, 3.9687194520257854`*^9, 3.9687199685369396`*^9, 
+  3.968722459347233*^9, 3.968722583514412*^9, 3.969041517711214*^9, 
+  3.9690415776639824`*^9},
+ CellLabel->
+  "During evaluation of \
+In[15]:=",ExpressionUUID->"d6b8cfd9-4622-204b-b690-6cb71802f25e"],
+
+Cell[BoxData["\<\"Exportado Oscilador n=1\"\>"], "Print",
+ CellChangeTimes->{3.9687133153601913`*^9, 3.9687184891331253`*^9, 
+  3.9687190035750275`*^9, 3.9687194520257854`*^9, 3.9687199685369396`*^9, 
+  3.968722459347233*^9, 3.968722583514412*^9, 3.969041517711214*^9, 
+  3.96904158440629*^9},
+ CellLabel->
+  "During evaluation of \
+In[15]:=",ExpressionUUID->"5d9b8424-bb9b-bd4f-9c60-7a3484307c6c"],
+
+Cell[BoxData["\<\"Exportado Oscilador n=2\"\>"], "Print",
+ CellChangeTimes->{3.9687133153601913`*^9, 3.9687184891331253`*^9, 
+  3.9687190035750275`*^9, 3.9687194520257854`*^9, 3.9687199685369396`*^9, 
+  3.968722459347233*^9, 3.968722583514412*^9, 3.969041517711214*^9, 
+  3.9690415946811695`*^9},
+ CellLabel->
+  "During evaluation of \
+In[15]:=",ExpressionUUID->"27c16c58-f34c-b644-853f-586065410662"],
+
+Cell[BoxData["\<\"Exportado Oscilador n=3\"\>"], "Print",
+ CellChangeTimes->{3.9687133153601913`*^9, 3.9687184891331253`*^9, 
+  3.9687190035750275`*^9, 3.9687194520257854`*^9, 3.9687199685369396`*^9, 
+  3.968722459347233*^9, 3.968722583514412*^9, 3.969041517711214*^9, 
+  3.9690416081027126`*^9},
+ CellLabel->
+  "During evaluation of \
+In[15]:=",ExpressionUUID->"ca793620-a354-df43-9e3d-26d2e5db8566"],
+
+Cell[BoxData["\<\"Exportado Pozo n=1\"\>"], "Print",
+ CellChangeTimes->{3.9687133153601913`*^9, 3.9687184891331253`*^9, 
+  3.9687190035750275`*^9, 3.9687194520257854`*^9, 3.9687199685369396`*^9, 
+  3.968722459347233*^9, 3.968722583514412*^9, 3.969041517711214*^9, 
+  3.9690416165597553`*^9},
+ CellLabel->
+  "During evaluation of \
+In[15]:=",ExpressionUUID->"7534273d-e1d4-8940-b741-54ef79df53d1"],
+
+Cell[BoxData["\<\"Exportado Pozo n=2\"\>"], "Print",
+ CellChangeTimes->{3.9687133153601913`*^9, 3.9687184891331253`*^9, 
+  3.9687190035750275`*^9, 3.9687194520257854`*^9, 3.9687199685369396`*^9, 
+  3.968722459347233*^9, 3.968722583514412*^9, 3.969041517711214*^9, 
+  3.9690416255638943`*^9},
+ CellLabel->
+  "During evaluation of \
+In[15]:=",ExpressionUUID->"fc99d1a5-74cf-c443-ad8a-3e467dda571a"],
+
+Cell[BoxData["\<\"Exportado Pozo n=3\"\>"], "Print",
+ CellChangeTimes->{3.9687133153601913`*^9, 3.9687184891331253`*^9, 
+  3.9687190035750275`*^9, 3.9687194520257854`*^9, 3.9687199685369396`*^9, 
+  3.968722459347233*^9, 3.968722583514412*^9, 3.969041517711214*^9, 
+  3.969041637397772*^9},
+ CellLabel->
+  "During evaluation of \
+In[15]:=",ExpressionUUID->"9d49cc4a-6b2d-8b4b-9aa8-95b17c8c7e6d"],
+
+Cell[BoxData["\<\"Exportado Pozo n=4\"\>"], "Print",
+ CellChangeTimes->{3.9687133153601913`*^9, 3.9687184891331253`*^9, 
+  3.9687190035750275`*^9, 3.9687194520257854`*^9, 3.9687199685369396`*^9, 
+  3.968722459347233*^9, 3.968722583514412*^9, 3.969041517711214*^9, 
+  3.9690416576345844`*^9},
+ CellLabel->
+  "During evaluation of \
+In[15]:=",ExpressionUUID->"48f6c22f-5f31-2e45-ad5e-8303d7e37ee3"],
+
+Cell[BoxData["\<\"Exportado Hidr\[OAcute]geno 1s\"\>"], "Print",
+ CellChangeTimes->{3.9687133153601913`*^9, 3.9687184891331253`*^9, 
+  3.9687190035750275`*^9, 3.9687194520257854`*^9, 3.9687199685369396`*^9, 
+  3.968722459347233*^9, 3.968722583514412*^9, 3.969041517711214*^9, 
+  3.9690416658760147`*^9},
+ CellLabel->
+  "During evaluation of \
+In[15]:=",ExpressionUUID->"8cd00021-c721-2240-a7b2-4594aebc8f83"],
+
+Cell[BoxData["\<\"Exportado Hidr\[OAcute]geno 2s (psi200)\"\>"], "Print",
+ CellChangeTimes->{3.9687133153601913`*^9, 3.9687184891331253`*^9, 
+  3.9687190035750275`*^9, 3.9687194520257854`*^9, 3.9687199685369396`*^9, 
+  3.968722459347233*^9, 3.968722583514412*^9, 3.969041517711214*^9, 
+  3.969041681320463*^9},
+ CellLabel->
+  "During evaluation of \
+In[15]:=",ExpressionUUID->"ae9c7c94-c41a-3f4c-97e1-714b0715604b"],
+
+Cell[BoxData["\<\"Exportado Hidr\[OAcute]geno 3s (psi300)\"\>"], "Print",
+ CellChangeTimes->{3.9687133153601913`*^9, 3.9687184891331253`*^9, 
+  3.9687190035750275`*^9, 3.9687194520257854`*^9, 3.9687199685369396`*^9, 
+  3.968722459347233*^9, 3.968722583514412*^9, 3.969041517711214*^9, 
+  3.969041713610737*^9},
+ CellLabel->
+  "During evaluation of \
+In[15]:=",ExpressionUUID->"bdb2180d-2226-c842-b24b-5681817c4b62"],
+
+Cell[BoxData["\<\"TODAS las im\[AAcute]genes exportadas/actualizadas en sus \
+carpetas\"\>"], "Print",
+ CellChangeTimes->{3.9687133153601913`*^9, 3.9687184891331253`*^9, 
+  3.9687190035750275`*^9, 3.9687194520257854`*^9, 3.9687199685369396`*^9, 
+  3.968722459347233*^9, 3.968722583514412*^9, 3.969041517711214*^9, 
+  3.969041713626137*^9},
+ CellLabel->
+  "During evaluation of \
+In[15]:=",ExpressionUUID->"ec028a7e-d93a-f742-abbe-3892a81c519a"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.9687197178060894`*^9, 3.9687197190128326`*^9}, 
+   3.9687225552298775`*^9},ExpressionUUID->"bc70a5d6-68ed-e946-8766-\
+1d1b5bae7a12"]
+},
+WindowSize->{1011, 494.25},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"14.1 for Microsoft Windows (64-bit) (July 16, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"89b5413b-e62d-7e40-a25c-954d009af9da"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[554, 20, 154, 2, 28, "Input",ExpressionUUID->"87e69862-badf-124a-ac6c-07160b0587ae"],
+Cell[711, 24, 539, 15, 66, "Input",ExpressionUUID->"2d1e5a15-8fc8-024d-9c54-37b5fc497a56"],
+Cell[1253, 41, 2334, 64, 218, "Input",ExpressionUUID->"7be824b1-5a00-0b49-8a83-e0a8ad8e8774"],
+Cell[CellGroupData[{
+Cell[3612, 109, 33109, 859, 2197, "Input",ExpressionUUID->"05fae8f8-7bc5-0e42-b842-57b74867605b"],
+Cell[CellGroupData[{
+Cell[36746, 972, 401, 7, 22, "Print",ExpressionUUID->"d6b8cfd9-4622-204b-b690-6cb71802f25e"],
+Cell[37150, 981, 398, 7, 22, "Print",ExpressionUUID->"5d9b8424-bb9b-bd4f-9c60-7a3484307c6c"],
+Cell[37551, 990, 401, 7, 22, "Print",ExpressionUUID->"27c16c58-f34c-b644-853f-586065410662"],
+Cell[37955, 999, 401, 7, 22, "Print",ExpressionUUID->"ca793620-a354-df43-9e3d-26d2e5db8566"],
+Cell[38359, 1008, 396, 7, 22, "Print",ExpressionUUID->"7534273d-e1d4-8940-b741-54ef79df53d1"],
+Cell[38758, 1017, 396, 7, 22, "Print",ExpressionUUID->"fc99d1a5-74cf-c443-ad8a-3e467dda571a"],
+Cell[39157, 1026, 394, 7, 22, "Print",ExpressionUUID->"9d49cc4a-6b2d-8b4b-9aa8-95b17c8c7e6d"],
+Cell[39554, 1035, 396, 7, 22, "Print",ExpressionUUID->"48f6c22f-5f31-2e45-ad5e-8303d7e37ee3"],
+Cell[39953, 1044, 408, 7, 22, "Print",ExpressionUUID->"8cd00021-c721-2240-a7b2-4594aebc8f83"],
+Cell[40364, 1053, 415, 7, 22, "Print",ExpressionUUID->"ae9c7c94-c41a-3f4c-97e1-714b0715604b"],
+Cell[40782, 1062, 415, 7, 22, "Print",ExpressionUUID->"bdb2180d-2226-c842-b24b-5681817c4b62"],
+Cell[41200, 1071, 444, 8, 22, "Print",ExpressionUUID->"ec028a7e-d93a-f742-abbe-3892a81c519a"]
+}, Open  ]]
+}, Open  ]],
+Cell[41671, 1083, 181, 3, 28, "Input",ExpressionUUID->"bc70a5d6-68ed-e946-8766-1d1b5bae7a12"]
+}
+]
+*)
+
