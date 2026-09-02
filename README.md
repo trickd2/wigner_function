@@ -1,6 +1,6 @@
-# Representación en espacio de fase con la función de Wigner
+# Representación de sistemas cuánticos en el espacio de fase mediante la función de Wigner
 
-Código y figuras para representar estados cuánticos (oscilador armónico, pozo infinito y parte radial del hidrógeno) mediante la función de Wigner. Incluye scripts/notebooks, imágenes de las gráficas y referencias completas.
+El siguiente repositorio muestra scripts/notebooks, imágenes de las gráficas y referencias completas para representar estados cuánticos de los siguientes sistemas: oscilador armónico, pozo cuadrado infinito y parte radial del átomo de hidrógeno; mediante la función de Wigner. 
 
 ## Autores
 
